@@ -8,7 +8,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: ['http://localhost:4200'], // Frontend origin
+      credentials: true,
+    },
+  });
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
