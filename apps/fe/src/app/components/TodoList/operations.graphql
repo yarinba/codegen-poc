@@ -1,0 +1,26 @@
+query Todos {
+  todos {
+    ...TodoLean
+  }
+}
+
+mutation CreateTodo($input: NewTodoInput!) {
+  createTodo(input: $input) {
+    id
+    title
+    description
+    completed
+    creationDate
+  }
+}
+
+mutation CompleteTodo($id: ID!) {
+  updateTodo(id: $id, input: { completed: true }) {
+    id
+    completed
+  }
+}
+
+mutation DeleteTodo($id: ID!) {
+  deleteTodo(id: $id)
+}

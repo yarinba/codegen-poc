@@ -1,0 +1,5 @@
+fragment TodoLean on Todo {
+  id
+  title
+  completed
+}
