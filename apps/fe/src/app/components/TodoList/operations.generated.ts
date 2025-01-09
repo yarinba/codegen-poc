@@ -16,12 +16,13 @@ export type CreateTodoMutationVariables = Types.Exact<{
 
 export type CreateTodoMutation = { __typename?: 'Mutation', createTodo: { __typename?: 'Todo', id: string, title: string, description: string, completed: boolean, creationDate: any } };
 
-export type CompleteTodoMutationVariables = Types.Exact<{
+export type ToggleTodoCompletionMutationVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
+  completed: Types.Scalars['Boolean']['input'];
 }>;
 
 
-export type CompleteTodoMutation = { __typename?: 'Mutation', updateTodo: { __typename?: 'Todo', id: string, completed: boolean } };
+export type ToggleTodoCompletionMutation = { __typename?: 'Mutation', updateTodo: { __typename?: 'Todo', id: string, completed: boolean } };
 
 export type DeleteTodoMutationVariables = Types.Exact<{
   id: Types.Scalars['ID']['input'];
@@ -107,40 +108,41 @@ export function useCreateTodoMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateTodoMutationHookResult = ReturnType<typeof useCreateTodoMutation>;
 export type CreateTodoMutationResult = Apollo.MutationResult<CreateTodoMutation>;
 export type CreateTodoMutationOptions = Apollo.BaseMutationOptions<CreateTodoMutation, CreateTodoMutationVariables>;
-export const CompleteTodoDocument = gql`
-    mutation CompleteTodo($id: ID!) {
-  updateTodo(id: $id, input: {completed: true}) {
+export const ToggleTodoCompletionDocument = gql`
+    mutation ToggleTodoCompletion($id: ID!, $completed: Boolean!) {
+  updateTodo(id: $id, input: {completed: $completed}) {
     id
     completed
   }
 }
     `;
-export type CompleteTodoMutationFn = Apollo.MutationFunction<CompleteTodoMutation, CompleteTodoMutationVariables>;
+export type ToggleTodoCompletionMutationFn = Apollo.MutationFunction<ToggleTodoCompletionMutation, ToggleTodoCompletionMutationVariables>;
 
 /**
- * __useCompleteTodoMutation__
+ * __useToggleTodoCompletionMutation__
  *
- * To run a mutation, you first call `useCompleteTodoMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCompleteTodoMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useToggleTodoCompletionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useToggleTodoCompletionMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [completeTodoMutation, { data, loading, error }] = useCompleteTodoMutation({
+ * const [toggleTodoCompletionMutation, { data, loading, error }] = useToggleTodoCompletionMutation({
  *   variables: {
  *      id: // value for 'id'
+ *      completed: // value for 'completed'
  *   },
  * });
  */
-export function useCompleteTodoMutation(baseOptions?: Apollo.MutationHookOptions<CompleteTodoMutation, CompleteTodoMutationVariables>) {
+export function useToggleTodoCompletionMutation(baseOptions?: Apollo.MutationHookOptions<ToggleTodoCompletionMutation, ToggleTodoCompletionMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CompleteTodoMutation, CompleteTodoMutationVariables>(CompleteTodoDocument, options);
+        return Apollo.useMutation<ToggleTodoCompletionMutation, ToggleTodoCompletionMutationVariables>(ToggleTodoCompletionDocument, options);
       }
-export type CompleteTodoMutationHookResult = ReturnType<typeof useCompleteTodoMutation>;
-export type CompleteTodoMutationResult = Apollo.MutationResult<CompleteTodoMutation>;
-export type CompleteTodoMutationOptions = Apollo.BaseMutationOptions<CompleteTodoMutation, CompleteTodoMutationVariables>;
+export type ToggleTodoCompletionMutationHookResult = ReturnType<typeof useToggleTodoCompletionMutation>;
+export type ToggleTodoCompletionMutationResult = Apollo.MutationResult<ToggleTodoCompletionMutation>;
+export type ToggleTodoCompletionMutationOptions = Apollo.BaseMutationOptions<ToggleTodoCompletionMutation, ToggleTodoCompletionMutationVariables>;
 export const DeleteTodoDocument = gql`
     mutation DeleteTodo($id: ID!) {
   deleteTodo(id: $id)

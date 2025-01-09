@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@codegen-poc/types": ["libs/types/src/index.ts"]
+      "@codegen-poc/types": ["libs/types/src/index.ts"],
+      "@codegen-poc/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,9 +1,17 @@
+fragment Todo on Todo {
+  ...TodoLean
+  description
+  creationDate
+}
+
 query Todo($id: ID!) {
   todo(id: $id) {
-    id
-    title
-    description
-    completed
-    creationDate
+    ...Todo
+  }
+}
+
+mutation UpdateTodo($id: ID!, $input: UpdateTodoInput!) {
+  updateTodo(id: $id, input: $input) {
+    ...Todo
   }
 }

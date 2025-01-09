@@ -14,8 +14,8 @@ mutation CreateTodo($input: NewTodoInput!) {
   }
 }
 
-mutation CompleteTodo($id: ID!) {
-  updateTodo(id: $id, input: { completed: true }) {
+mutation ToggleTodoCompletion($id: ID!, $completed: Boolean!) {
+  updateTodo(id: $id, input: { completed: $completed }) {
     id
     completed
   }

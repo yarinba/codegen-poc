@@ -5,7 +5,7 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { TodoListItem } from './TodoListItem';
 import {
   TodosDocument,
-  useCompleteTodoMutation,
+  useToggleTodoCompletionMutation,
   useCreateTodoMutation,
   useDeleteTodoMutation,
   useTodosQuery,
@@ -13,12 +13,13 @@ import {
 
 export function TodoList() {
   const [newTodo, setNewTodo] = useState('');
+
   const { data, loading } = useTodosQuery();
 
   const [createTodo] = useCreateTodoMutation({
     refetchQueries: [TodosDocument],
   });
-  const [completeTodo] = useCompleteTodoMutation();
+  const [toggleTodoCompletion] = useToggleTodoCompletionMutation();
 
   const [deleteTodo] = useDeleteTodoMutation({
     refetchQueries: [TodosDocument],
@@ -39,7 +40,9 @@ export function TodoList() {
   };
 
   const handleToggle = async (id: string, completed: boolean) => {
-    await completeTodo({ variables: { id } });
+    await toggleTodoCompletion({
+      variables: { id, completed },
+    });
   };
 
   const handleDelete = async (id: string) => {
