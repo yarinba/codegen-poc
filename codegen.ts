@@ -22,6 +22,7 @@ const config: CodegenConfig = {
       config: {},
     },
   },
+  watch: ['apps/fe/src/**/*.graphql'],
 };
 
 export default config;
